@@ -1,7 +1,7 @@
 {
-  "name": "@react-navigation/native",
+  "name": "@terminus/react-navigation-native-fill",
   "description": "React Native integration for React Navigation",
-  "version": "5.5.1",
+  "version": "5.5.2",
   "keywords": [
     "react-native",
     "react-navigation",

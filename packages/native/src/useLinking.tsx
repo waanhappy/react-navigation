@@ -4,7 +4,7 @@ import {
   getPathFromState as getPathFromStateDefault,
   NavigationContainerRef,
   NavigationState,
-  getActionFromState,
+  // getActionFromState,
 } from '@react-navigation/core';
 import { nanoid } from 'nanoid/non-secure';
 import ServerContext from './ServerContext';
@@ -37,10 +37,10 @@ const createMemoryHistory = () => {
       if (id) {
         const index = items.findIndex((item) => item.id === id);
 
-        return index > -1 ? index : 0;
+        return index;
       }
 
-      return 0;
+      return -1;
     },
 
     get(index: number) {
@@ -325,23 +325,23 @@ export default function useLinking(
       // When browser back/forward is clicked, we first need to check if state object for this index exists
       // If it does we'll reset to that state object
       // Otherwise, we'll handle it like a regular deep link
-      const recordedState = history.get(history.index);
+      // const recordedState = history.get(history.index);
 
-      if (recordedState) {
-        navigation.resetRoot(recordedState);
-        return;
-      }
+      // if (recordedState) {
+      //   navigation.resetRoot(recordedState);
+      //   return;
+      // }
 
       const state = getStateFromPathRef.current(path, configRef.current);
 
       if (state) {
-        const action = getActionFromState(state);
+        // const action = getActionFromState(state);
 
-        if (action !== undefined) {
-          navigation.dispatch(action);
-        } else {
-          navigation.resetRoot(state);
-        }
+        // if (action !== undefined) {
+        //   navigation.dispatch(action);
+        // } else {
+        navigation.resetRoot(state);
+        // }
       } else {
         // if current path didn't return any state, we should revert to initial state
         navigation.resetRoot(state);
